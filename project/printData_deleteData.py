@@ -2,7 +2,7 @@ import os
 
 
 def printData():
-    nama_file = input("Masukkan nama file (.txt) :")
+#     nama_file = input("Masukkan nama file (.txt) :")
     try:
         infile = open(nama_file, "r")
         print(infile.read())
@@ -13,7 +13,7 @@ def printData():
 
 
 def deleteDaata():
-    nama_file = input("Masukkan nama file (.txt) : ")
+#     nama_file = input("Masukkan nama file (.txt) : ")
     try:
         os.remove(nama_file)
         print("NOTIFIKASI : File", nama_file, "Berhasil Dihapus \n")
