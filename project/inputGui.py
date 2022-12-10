@@ -1,36 +1,41 @@
 from PySimpleGUI import *
-from embedClass import *
+import classEmbed
+from discord import *
+import time
 
-def sendEmbed():
-    print('test')
 
 theme('SandyBeach')
-embed = embedClass()
+embed = classEmbed.classEmbed()
 
 layout = [
-    [Text('Masukkan URL Webhook:\t'), InputText()],
-    [Text('Masukkan Content:\t'), InputText()],
-    [Text('Masukkan URL Thumbnail:\t'), InputText()],
-    [Text('Masukkan Author:\t\t'), InputText()],
-    [Text('Masukkan Title:\t\t'), InputText()],
-    [Text('Masukkan Desc:\t\t'), InputText()],
-    [Submit(), Cancel()]
+    [Text('URL Webhook:\t'), InputText()],
+    [Text('Content:\t\t'), InputText()],
+    [Text('URL Thumbnail:\t'), InputText()],
+    [Text('Author:\t\t'), InputText()],
+    [Text('Title:\t\t'), InputText()],
+    [Text('Desc:\t\t'), InputText()],
+    [Text('Image Url:\t'), InputText()],
+    [Button('Send'), Button('Cancel')]
 ]
 
 Window = Window('Webhook Discord', layout)
-event, val = Window.read()
+while True:
+    event, val = Window.read()
+    if event in (None, 'Exit'):
+        break
+    if event == 'Send':
+        embed.setWebhookUrl(val[0])
+        embed.setContent(val[1])
+        embed.setThumbnailUrl(val[2])
+        embed.setAuthorName(val[3])
+        embed.setTitle(val[4])
+        embed.setDesc(val[5])
+        embed.setImgUrl(val[6])
+        #function
+        discord(embed.getWebhookUrl(), embed.getContent(), embed.getThumbnailUrl(), embed.getAuthorName(), embed.getTitle(), embed.getDesc(), embed.getImgUrl())
+        break
+    elif event == 'Cancel':
+        break
 Window.close()
 
-webhookUrl = val[0]; embed.setWebhookUrl(webhookUrl)
-content = val[1]; embed.setContent(content)
-thumbnailUrl = val[2]; embed.setThumbnailUrl(thumbnailUrl)
-author = val[3]; embed.setAuthorName(author)
-title = val[4]; embed.setTitle(title)
-desc = val[5]; embed.setDesc(desc)
-
-print(webhookUrl)
-print(content)
-print(thumbnailUrl)
-print(author)
-print(title)
-print(desc)
+# print(val)
