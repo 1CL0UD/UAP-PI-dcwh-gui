@@ -2,6 +2,7 @@ from PySimpleGUI import *
 import classEmbed
 from discord import *
 import time
+import printData_deleteData as pd
 
 
 theme('SandyBeach')
@@ -19,13 +20,17 @@ layout = [
 ]
 
 Window = Window('Webhook Discord', layout)
+embed.setContent('')
 while True:
     event, val = Window.read()
     if event in (None, 'Exit'):
         break
     if event == 'Send':
         embed.setWebhookUrl(val[0])
-        embed.setContent(val[1])
+        if embed.getContent() == '':
+            embed.setContent(pd.openData(val[1]))
+        else:
+            embed.setContent(val[1])
         embed.setThumbnailUrl(val[2])
         embed.setAuthorName(val[3])
         embed.setTitle(val[4])
