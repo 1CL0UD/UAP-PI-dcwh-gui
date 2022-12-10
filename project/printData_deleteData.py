@@ -1,7 +1,7 @@
 import os
 
 
-def printData():
+def printData(nama_file):
 #     nama_file = input("Masukkan nama file (.txt) :")
     try:
         infile = open(nama_file, "r")
@@ -12,7 +12,7 @@ def printData():
 
 
 
-def deleteDaata():
+def deleteData(nama_file):
 #     nama_file = input("Masukkan nama file (.txt) : ")
     try:
         os.remove(nama_file)
