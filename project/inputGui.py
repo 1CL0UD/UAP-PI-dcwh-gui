@@ -20,14 +20,13 @@ layout = [
 ]
 
 Window = Window('Webhook Discord', layout)
-embed.setContent('')
 while True:
     event, val = Window.read()
     if event in (None, 'Exit'):
         break
     if event == 'Send':
         embed.setWebhookUrl(val[0])
-        if embed.getContent() == '':
+        if '.txt' in val[1]:
             embed.setContent(pd.openData(val[1]))
         else:
             embed.setContent(val[1])
