@@ -1,15 +1,14 @@
 import requests
-import classEmbed
+
 #class embed
 
 def discord(whUrl, content, thumbUrl, authorName, title, desc, imgUrl):
-    embed = classEmbed.classEmbed()
     #embeds input
     data = {
         #webhook profile picture
         'avatar_url' : 'https://images.pexels.com/photos/15286/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500',
         'username' : 'Webhook',
-        'content' : '@everyone ' + content,
+        'content' : '@everyone\n' + content,
         'embeds' : [{
             'thumbnail' : {
                 'url' : thumbUrl
